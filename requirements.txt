@@ -1,0 +1,10 @@
+numpy
+pandas
+matplotlib
+nibabel
+scikit-learn
+torch
+torchvision
+xgboost
+grad-cam
+Pillow
