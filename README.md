@@ -126,3 +126,5 @@ Her modelin en zayıf noktası "orta" kalite sınıfı — hem iyi hem kötü il
 
 ## Kurulum
 Google Colab'da GPU ile çalıştırın. Veri seti OpenNeuro'nun herkese açık S3 bucket'ından otomatik olarak indirilir.
+
+Not: Bu projede kodlama, hata ayıklama ve readme yazimi için Claude (Anthropic) yardımıyla çalıştım; tüm deneysel tasarım kararları, sonuç yorumları ve  analiz bana aittir.
