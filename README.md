@@ -49,6 +49,13 @@ All splits are subject-level (no data leakage), fixed seed (42).
 | **True 2** | 3 | 8 | 4 |
 | **True 3** | 0 | 3 | 29 |
 
+## Overfitting analysis
+
+**Train vs. validation curves (ResNet-18, multi-slice, 10 epochs):**
+![Train/val curves](download-1.png)
+
+Tracking per-epoch validation performance revealed clear overfitting: train accuracy rose steadily to 0.95, while validation accuracy peaked early (epoch 3, 0.848) then degraded and fluctuated, with validation loss spiking to 1.36 at epoch 5. Since the model used for final evaluation was saved at epoch 10 rather than the best-performing epoch, early stopping would likely have produced a more robust model. This is a concrete, evidence-based limitation identified through the experiment itself rather than assumed in advance.
+
 ## Error analysis
 
 **Misclassified test scans (multi-slice ResNet-18):**
@@ -63,9 +70,12 @@ All splits are subject-level (no data leakage), fixed seed (42).
 **Grad-CAM — one correct prediction and all 3 distinct error types:**
 ![Grad-CAM all error types](gradcam_all_error_types.png)
 
-Every model's biggest weakness is the "medium" quality class — it sits ambiguously between good and bad, and gets confused with both. Error review shows the deep learning model tends to call medium-quality (mild motion) scans "good." Grad-CAM shows the model attends heavily to central brain structure rather than peripheral cortical edges, where motion blur is actually most visible — a plausible explanation for that confusion. With only ~300 training scans, tree-based models on MRIQC's hand-engineered features outperformed deep learning on raw pixels, likely because those features already encode domain expertise a CNN would otherwise need far more data to learn.
+**Grad-CAM — same analysis on the epoch-10 (overfit) model, with a wider range of error types:**
+![Grad-CAM overfit model](download.png)
 
-Looking more closely at the errors: only 3 distinct (true, predicted) error combinations occurred across all 13 test-set mistakes, and all three involve the medium class — classes 1 and 3 (good/bad) were never confused with each other. The correct-vs-wrong and multi-error-type Grad-CAM comparisons above show the model consistently attending to the orbital/sinus region (likely because bone-tissue contrast makes motion artifacts easiest to detect there) across both correct and incorrect predictions, with one error case showing attention shifting elsewhere entirely — suggesting the model's attention pattern isn't perfectly stable across cases.
+Every model's biggest weakness is the "medium" quality class — it sits ambiguously between good and bad, and gets confused with both. Error review shows the deep learning model tends to call medium-quality (mild motion) scans "good." With only ~300 training scans, tree-based models on MRIQC's hand-engineered features outperformed deep learning on raw pixels, likely because those features already encode domain expertise a CNN would otherwise need far more data to learn.
+
+Looking more closely at the errors: only 3–4 distinct (true, predicted) error combinations occurred across test-set mistakes across runs, and all involve the medium class — classes 1 and 3 (good/bad) were essentially never confused with each other. Across most of the Grad-CAM comparisons, the model consistently attends to the orbital/sinus region (likely because bone-tissue contrast makes motion artifacts easiest to detect there), in both correct and incorrect predictions — suggesting the model may be relying on a "shortcut" feature (a concept described in Geirhos et al., 2020) rather than the cortical motion blur itself. On the more overfit (epoch-10) model, the attention maps were noticeably more diffuse and less focused than on earlier checkpoints — an interesting but exploratory observation that would need a more systematic metric (e.g. attention entropy or confidence calibration) to confirm as a reliable overfitting signal, rather than being treated as conclusive on its own.
 
 ## Contents
 - `PIMI_Task_MR_Quality_Classification.ipynb` — full notebook
@@ -115,6 +125,13 @@ Yukarıdaki tabloyla aynı.
 
 Yukarıdaki tabloyla aynı.
 
+## Overfitting analizi
+
+**Eğitim vs. doğrulama eğrileri (ResNet-18, çoklu kesit, 10 epoch):**
+![Train/val eğrileri](download-1.png)
+
+Epoch-epoch doğrulama takibi, net bir overfitting ortaya çıkardı: train accuracy düzenli şekilde %95'e yükselirken, validation accuracy erken bir noktada (3. epoch, 0.848) zirveye ulaşıp sonra bozuldu ve dalgalandı, 5. epoch'ta validation loss 1.36'ya sıçradı. Final değerlendirmede kullanılan model en iyi epoch değil, 10. epoch'un ağırlıklarıydı — early stopping kullanılsaydı muhtemelen daha sağlam bir model elde edilirdi. Bu, önceden varsayılan değil, deneyin kendisinden çıkan somut, kanıta dayalı bir sınırlama.
+
 ## Hata analizi
 
 **Yanlış sınıflandırılan test taramaları:**
@@ -129,9 +146,12 @@ Yukarıdaki tabloyla aynı.
 **Grad-CAM — 1 doğru tahmin ve 3 farklı hata türü:**
 ![Grad-CAM tüm hata türleri](gradcam_all_error_types.png)
 
-Her modelin en zayıf noktası "orta" kalite sınıfı — hem iyi hem kötü ile karışıyor. Hata incelemesi, derin öğrenme modelinin orta kaliteli (hafif hareketli) taramaları "iyi" olarak etiketleme eğiliminde olduğunu gösteriyor. Grad-CAM, modelin hareket bulanıklığının asıl göründüğü çevresel kortikal kenarlar yerine beynin merkezi yapısına odaklandığını gösteriyor — bu da orta/iyi karışıklığını açıklayabilir. Sadece ~300 eğitim taraması ile, MRIQC'nin elle tasarlanmış özellikleri üzerindeki ağaç tabanlı modeller, ham pikseller üzerindeki derin öğrenmeyi geride bıraktı; muhtemelen bu özellikler bir CNN'in çok daha fazla veriyle öğrenmesi gereken uzmanlık bilgisini zaten içeriyor.
+**Grad-CAM — epoch-10 (overfit) modeli, daha geniş hata türü yelpazesiyle:**
+![Grad-CAM overfit model](download.png)
 
-13 test hatasının tamamında sadece 3 farklı (gerçek, tahmin) kombinasyonu var, üçü de orta sınıfı içeriyor — iyi ve kötü sınıflar birbirine hiç karışmadı. Doğru-vs-yanlış ve çoklu hata türü Grad-CAM karşılaştırmaları, modelin hem doğru hem yanlış tahminlerde tutarlı olarak göz çukuru/sinüs bölgesine odaklandığını gösteriyor (muhtemelen kemik-doku kontrastı hareket artefaktını burada en net gösteriyor), ancak bir hata örneğinde dikkat tamamen farklı bir bölgeye kaymış — bu da modelin dikkat örüntüsünün her zaman tutarlı olmadığını gösteriyor.
+Her modelin en zayıf noktası "orta" kalite sınıfı — hem iyi hem kötü ile karışıyor. Hata incelemesi, derin öğrenme modelinin orta kaliteli (hafif hareketli) taramaları "iyi" olarak etiketleme eğiliminde olduğunu gösteriyor. Sadece ~300 eğitim taraması ile, MRIQC'nin elle tasarlanmış özellikleri üzerindeki ağaç tabanlı modeller, ham pikseller üzerindeki derin öğrenmeyi geride bıraktı; muhtemelen bu özellikler bir CNN'in çok daha fazla veriyle öğrenmesi gereken uzmanlık bilgisini zaten içeriyor.
+
+Hatalara daha yakından bakınca: farklı eğitim turlarında test hatalarının tamamında sadece 3-4 farklı (gerçek, tahmin) kombinasyonu var, hepsi de orta sınıfı içeriyor — iyi ve kötü sınıflar neredeyse hiç karışmadı. Grad-CAM karşılaştırmalarının çoğunda model tutarlı olarak göz çukuru/sinüs bölgesine odaklanıyor (muhtemelen kemik-doku kontrastı hareket artefaktını burada en net gösteriyor), hem doğru hem yanlış tahminlerde — bu, modelin kortikal hareket bulanıklığı yerine bir "kısayol" özelliğe güveniyor olabileceğini düşündürüyor (Geirhos ve ark., 2020'de tanımlanan bir kavram). Daha fazla overfit olmuş (epoch-10) modelde, dikkat haritaları önceki checkpoint'lere göre belirgin şekilde daha dağınık ve odaksızdı — ilginç ama keşifsel bir gözlem; bunu kesin bir overfitting göstergesi olarak sunmak yerine, daha sistematik bir metrikle (örneğin dikkat entropisi ya da güven kalibrasyonu) doğrulanması gereken açık bir soru olarak bırakıyorum.
 
 ## İçerik
 - `PIMI_Task_MR_Quality_Classification.ipynb` — tam analiz defteri
