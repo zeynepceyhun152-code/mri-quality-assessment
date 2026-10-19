@@ -1,0 +1,7 @@
+,bal_acc,bal_acc,bal_acc,qw_kappa,qw_kappa,qw_kappa,auroc_ovr,auroc_ovr,auroc_ovr,recall_orta,recall_orta,recall_orta
+,mean,std,count,mean,std,count,mean,std,count,mean,std,count
+model,,,,,,,,,,,,
+DenseNet121 (sıfırdan),0.761,,1,0.828,,1,0.889,,1,0.423,,1
+"MedicalNet R18 ([0,1] girdi)",0.78,0.052,3,0.844,0.036,3,0.9,0.018,3,0.577,0.077,3
+MedicalNet R18 + z-score,0.719,0.039,3,0.806,0.031,3,0.878,0.016,3,0.449,0.08,3
+r3d_18 (Kinetics/video),0.813,0.013,3,0.881,0.009,3,0.929,0.003,3,0.564,0.059,3

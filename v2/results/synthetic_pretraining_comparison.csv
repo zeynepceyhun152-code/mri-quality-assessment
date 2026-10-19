@@ -1,0 +1,6 @@
+,bal_acc,bal_acc,bal_acc,qw_kappa,qw_kappa,qw_kappa,auroc_ovr,auroc_ovr,auroc_ovr,recall_orta,recall_orta,recall_orta
+,mean,std,count,mean,std,count,mean,std,count,mean,std,count
+grup,,,,,,,,,,,,
+baseline (r3d18),0.813,0.013,3,0.881,0.009,3,0.929,0.003,3,0.564,0.059,3
+sentetik + curriculum,0.793,0.033,2,0.861,0.014,2,0.926,0.014,2,0.577,0.109,2
+sentetik + rastgele,0.822,0.006,2,0.887,0.006,2,0.91,0.007,2,0.577,0.0,2

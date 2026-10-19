@@ -1,0 +1,6 @@
+,test_bal_acc,test_bal_acc,test_macro_f1,test_macro_f1,test_auroc_ovr,test_auroc_ovr,test_qw_kappa,test_qw_kappa
+,mean,std,mean,std,mean,std,mean,std
+aug,,,,,,,,
+flip,0.791,0.023,0.783,0.017,0.903,0.008,0.856,0.026
+flip_rot90,0.813,0.013,0.803,0.015,0.929,0.003,0.881,0.009
+none,0.792,0.042,0.784,0.046,0.911,0.019,0.856,0.043

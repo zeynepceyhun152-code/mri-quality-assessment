@@ -1,0 +1,4 @@
+model,cv_bal_acc,val_bal_acc,val_macro_f1,val_auroc_ovr,val_qw_kappa,test_bal_acc,test_macro_f1,test_auroc_ovr,test_qw_kappa
+LogReg,0.698 ± 0.029,0.696,0.695,0.872,0.763,0.708,0.699,0.866,0.808
+RF,0.769 ± 0.043,0.854,0.852,0.962,0.913,0.756,0.748,0.897,0.841
+XGB,0.756 ± 0.033,0.822,0.822,0.952,0.866,0.717,0.707,0.897,0.818

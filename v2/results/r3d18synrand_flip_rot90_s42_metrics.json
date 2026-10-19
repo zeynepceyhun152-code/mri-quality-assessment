@@ -1,0 +1,16 @@
+{
+ "run": "r3d18synrand_flip_rot90_s42",
+ "best_epoch": 6,
+ "val": {
+  "bal_acc": 0.897,
+  "macro_f1": 0.901,
+  "auroc_ovr": 0.982,
+  "qw_kappa": 0.915
+ },
+ "test": {
+  "bal_acc": 0.827,
+  "macro_f1": 0.818,
+  "auroc_ovr": 0.915,
+  "qw_kappa": 0.891
+ }
+}

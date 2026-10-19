@@ -1,0 +1,16 @@
+{
+ "run": "medicalnet18_flip_rot90_s42",
+ "best_epoch": 15,
+ "val": {
+  "bal_acc": 0.857,
+  "macro_f1": 0.854,
+  "auroc_ovr": 0.953,
+  "qw_kappa": 0.883
+ },
+ "test": {
+  "bal_acc": 0.825,
+  "macro_f1": 0.817,
+  "auroc_ovr": 0.907,
+  "qw_kappa": 0.879
+ }
+}

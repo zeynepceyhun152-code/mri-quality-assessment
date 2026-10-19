@@ -1,0 +1,7 @@
+model,n,bal_acc,macro_f1,auroc,qw_kappa
+RF (MRIQC),1,0.756,0.748,0.897,0.841
+CNN flip_rot90 – seed ort.,3,0.818,0.808,0.93,0.883
+CNN flip – seed ort.,3,0.789,0.783,0.912,0.852
+CNN none – seed ort.,3,0.789,0.784,0.919,0.852
+CNN – tüm modeller,9,0.821,0.812,0.923,0.881
+RF + CNN (tümü),-,0.831,0.823,0.917,0.89

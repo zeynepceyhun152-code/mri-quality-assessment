@@ -1,0 +1,5 @@
+koşul,bal_acc,macro_f1,auroc,qw_kappa,tahmin dağılımı (iyi/orta/kötü)
+orijinal,0.827,0.818,0.931,0.891,"[32, 18, 37]"
+arka plan silindi (sadece kafa),0.509,0.41,0.834,0.414,"[68, 0, 19]"
+kafa silindi (sadece arka plan),0.704,0.695,0.831,0.612,"[38, 22, 27]"
+yüz bölgesi silindi,0.818,0.808,0.923,0.883,"[32, 19, 36]"

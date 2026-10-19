@@ -1,0 +1,16 @@
+{
+ "run": "r3d18_none_s42",
+ "best_epoch": 7,
+ "val": {
+  "bal_acc": 0.832,
+  "macro_f1": 0.825,
+  "auroc_ovr": 0.96,
+  "qw_kappa": 0.889
+ },
+ "test": {
+  "bal_acc": 0.829,
+  "macro_f1": 0.827,
+  "auroc_ovr": 0.922,
+  "qw_kappa": 0.884
+ }
+}

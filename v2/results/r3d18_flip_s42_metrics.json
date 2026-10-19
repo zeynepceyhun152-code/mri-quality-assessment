@@ -1,0 +1,16 @@
+{
+ "run": "r3d18_flip_s42",
+ "best_epoch": 2,
+ "val": {
+  "bal_acc": 0.886,
+  "macro_f1": 0.883,
+  "auroc_ovr": 0.975,
+  "qw_kappa": 0.933
+ },
+ "test": {
+  "bal_acc": 0.809,
+  "macro_f1": 0.799,
+  "auroc_ovr": 0.91,
+  "qw_kappa": 0.874
+ }
+}

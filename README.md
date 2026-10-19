@@ -164,3 +164,7 @@ Hatalara daha yakından bakınca: farklı eğitim turlarında test hatalarının
 Google Colab'da GPU ile çalıştırın. Veri seti OpenNeuro'nun herkese açık S3 bucket'ından otomatik olarak indirilir.
 
 Not: Bu projede hata ayıklama ve readme yazimi için Claude (Anthropic) yardımıyla çalıştım; tüm deneysel tasarım kararları, sonuç yorumları ve analiz bana aittir.
+
+
+## v2 (after PIMI Lab feedback)
+See [`v2/`](v2/) for augmentation, 3D models, error analysis and quality-controlled synthetic images.
